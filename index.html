@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sixtyfour+Convergence&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nabla&family=Sixtyfour+Convergence&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nabla&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sixtyfour+Convergence&display=swap" rel="stylesheet">
+  <title>Exam Reminder</title>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <h1>Exam Reminder</h1>
+    
+  </header>
+  <div class = "animals">
+    <div class = "animal animal-cat"></div>
+    <div class = "ufo-container">
+    <div class = "ufo"></div>
+    <div class = "text-bubble">Hello I'm the UFO!</div>
+  </div>
+  </div>
+  <!-- Main Content -->
+  <div class="main-container">
+    <!-- Side Panel -->
+   <!-- Side Panel -->
+<aside class="info-panel">
+  <p>
+    Hi, I’m a Computer Science major at Texas Tech University! I created this Exam Reminder website to address a real-world problem I often face — keeping track of my exams and staying motivated to prepare for them. 
+    <br><br>
+   This simple tool lets you easily add and track your exam dates, helping you plan ahead and stay focused. Whether you have one exam or several, it's designed to keep you on track with your study schedule, reduce stress, and ensure you never miss an important date! I hope this website helps you stay organized and prepared for whatever comes your way!
+    <br><br>
+    
+  </p>
+</aside>
+    <!-- Exam Reminder Section -->
+    <section class="reminder-section">
+      <div class="container">
+        <form id="examForm" class="container mt-4">
+          <h2>Add a New Exam</h2>
+          <div class="form-group">
+            <label for="examName">Exam Name</label>
+            <input type="text" class="form-control" id="examName" placeholder="Enter exam name" required>
+          </div>
+          <div class="form-group">
+            <label for="examDate">Exam Date</label>
+            <input type="date" class="form-control" id="examDate" required>
+          <button type="submit" class="btn btn-primary">Add Exam</button>
+        </form>
+        
+        <ul id="examsList" class = "list-group mt-4">
+        </ul>
+        <ul id="examList"></ul>
+      </div>
+    </section>
+  </div>
+
+<script src="script.js"></script>
+  <!-- jQuery, Popper.js, and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

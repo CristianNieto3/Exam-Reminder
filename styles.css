@@ -1,0 +1,202 @@
+/* General Styling */
+body {
+  font-family: 'Times New Roman', Times, serif; 
+  margin: 0;
+  padding: 0;
+  background-color: whitesmoke;
+}
+body, html{
+margin: 0;
+padding: 0;
+height: 100%;
+width: 100%;
+}
+
+.animals {
+  position: fixed; /* Keeps them fixed at the bottom */
+  bottom: 1px; /* Adjust this if you want them higher/lower */
+  left: 0;
+  width: 100%;
+  display: flex; /* To make them move side-by-side */
+  justify-content: space-evenly; /* Spread them out evenly */
+}
+
+/* Base animal styles */
+.animal {
+  width: 40px; /* Size of the animal */
+  height: 40px;
+  background-size: contain; /* Ensures animal images fit inside */
+  position: absolute;
+  animation: walk 10s linear infinite; /* Animation loop */
+}
+
+.ufo-container {
+position: absolute;
+bottom: 10px;
+left: -100px;
+display: flex;
+align-items: center;
+animation: moveUFO 10s linear infinite;
+}
+
+.ufo {
+width: 100px;
+height: 60px;
+background-image: url('../images/pixel-art-ufo.png');
+background-size: cover;
+}
+
+.text-bubble {
+position: absolute;
+bottom: 60px;
+left: 10px;
+background-color: #fff;
+padding: 5px 10px;
+border-radius: 10px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+display: none;
+font-family: 'Quicksand' , sans-serif;
+font-size: 14px;
+color: #333;
+display: block;
+animation: bubbleAnimation 1s forwards 2s;
+}
+
+@keyframes moveUFO {
+  0% {
+    left: -100px; /* Starts off the screen */
+  }
+  100% {
+    left: 100%; /* Moves to the right edge */
+  }
+}
+
+/* Text bubble animation (fade in and move up) */
+@keyframes bubbleAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Header Section */
+header {
+  background: url('../images/test-taking2.jpg') no-repeat center center/cover; /* Add your image path here */
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+header h1 {
+  font-family: 'Quicksand';
+  font-size: 3rem;
+  color: #333;
+  margin: 0;
+}
+
+header h1:hover{
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Main Container */
+.main-container {
+  display: flex;
+  margin: 20px;
+}
+
+/* Side Panel */
+.info-panel {
+  background-color: whitesmoke;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  margin-right: 20px;
+}
+
+.info-panel p {
+  font-size: 16px;
+  line-height: 1.8;
+  
+  color: #333; /* Darker color for better readability */
+}
+
+.info-panel {
+  font-family: 'Times New Roman', Times, serif;
+  border-left: 4px solid #5cb85c; /* Add a green accent to the side */
+}
+
+/* Reminder Section */
+.reminder-section {
+  flex: 2;
+}
+
+.container {
+  background-color: whitesmoke;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styling */
+input[type="text"],
+input[type="date"] {
+  width: 98%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #4cae4c;
+}
+
+/* Exam List */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background-color: #fff;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+button {
+  padding: 5px 10px;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #c9302c;
+}
