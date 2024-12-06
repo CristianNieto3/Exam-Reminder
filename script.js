@@ -9,7 +9,8 @@ const messages = [
     "no seriously, please",
     "When in doubt, guess C!",
     "I believe in you!",
-    "Day by Day, Brick by Brick!"
+    "Day by Day, Brick by Brick!",
+    "Coffee."
 ];
 
 let currentMessageIndex = 0;
