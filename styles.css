@@ -1,4 +1,6 @@
 /* General Styling */
+
+
 body {
   font-family: 'Times New Roman', Times, serif; 
   margin: 0;
@@ -95,15 +97,16 @@ header {
 
 header h1 {
   font-family: 'Quicksand';
+  text-shadow: 2px 2px #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 550px;
   font-size: 3rem;
   color: #333;
   margin: 0;
 }
 
-header h1:hover{
-  transform: scale(1.1);
-  transition: all 0.3s ease-in-out;
-}
 
 /* Main Container */
 .main-container {
@@ -119,13 +122,14 @@ header h1:hover{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   flex: 1;
   margin-right: 20px;
+  margin-bottom: 10px;
 }
 
 .info-panel p {
   font-size: 16px;
   line-height: 1.8;
-  
   color: #333; /* Darker color for better readability */
+  margin-bottom: 0;
 }
 
 .info-panel {
@@ -136,6 +140,42 @@ header h1:hover{
 /* Reminder Section */
 .reminder-section {
   flex: 2;
+}
+
+.phone {
+  margin-bottom: 100px;
+}
+
+.phone label {
+  font-size: 16px;
+  color: #555;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.phone input[type="tel"]{
+  width: 25%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.phone input[type="tel"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Placeholder styling */
+.phone input[type="tel"]::placeholder {
+  color: #aaa; /* Light gray placeholder text */
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 767px) {
+  .phone input[type="tel"] {
+    font-size: 14px; /* Adjust font size for mobile */
+  }
 }
 
 .container {
@@ -163,6 +203,7 @@ button[type="submit"] {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 20px;
 }
 
 button[type="submit"]:hover {
