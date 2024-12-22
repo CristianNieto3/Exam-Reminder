@@ -48,7 +48,7 @@ background-size: cover;
 
 .text-bubble {
 position: absolute;
-bottom: 60px;
+bottom: 40px;
 left: 10px;
 background-color: #fff;
 padding: 5px 10px;
@@ -156,7 +156,7 @@ input[type="date"] {
 }
 
 button[type="submit"] {
-  width: 100%;
+  width: 98%;
   padding: 10px;
   background-color: #5cb85c;
   color: white;
@@ -177,26 +177,53 @@ ul {
 }
 
 li {
-  background-color: #fff;
-  padding: 10px;
-  margin: 5px 0;
+  background-color: #f9f9f9;
+  padding: 1rem;
+  margin: 0.5rem 0;
   border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: 1px solid #ddd;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
+  font-weight: bold;
+  color:#333;
 }
 
-button {
+button { 
   padding: 5px 10px;
   background-color: #d9534f;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #c9302c;
+  background-color: #ff4cff;
+}
+
+/*Mobile portion of code*/
+@media (max-width: 768px){
+  .info-panel{
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .reminder-section{
+    width: 100%;
+  }
+}
+
+/* Tablet/Desktop styles */
+@media (min-width: 769px){
+  .info-panel {
+    width: 30%;
+    float: left;
+  }
+  .reminder-section{
+    width: 70%;
+    float: right;
+  }
 }
