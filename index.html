@@ -34,6 +34,7 @@
     <br><br>
    This simple tool lets you easily add and track your exam dates, helping you plan ahead and stay focused. Whether you have one exam or several, it's designed to keep you on track with your study schedule, reduce stress, and ensure you never miss an important date! I hope this website helps you stay organized and prepared for whatever comes your way!
     <br><br>
+    Enter the exam name and exam date, along with your phone number! You will recieve a text a week out from the exam, and every other day leading up to the exam as well as exam day! 
     
   </p>
 </aside>
@@ -45,12 +46,18 @@
           <div class="form-group">
             <label for="examName">Exam Name</label>
             <input type="text" class="form-control" id="examName" placeholder="Enter exam name" required>
-          </div>
+         </div>
           <div class="form-group">
             <label for="examDate">Exam Date</label>
             <input type="date" class="form-control" id="examDate" required>
+          </div>
+          <div class="phone">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number"required>
           <button type="submit" class="btn btn-primary">Add Exam</button>
+          
         </form>
+        
         
         <ul id="examsList" class = "list-group mt-4">
         </ul>
