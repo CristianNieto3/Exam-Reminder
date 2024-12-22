@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const { v4: uuidv4 } = require('uuid'); // Import uuid for unique IDs
 const { Pool } = require('pg'); // Import pg for database connection
+const twilio = require('twilio');
 
 // Database connection setup
 const pool = new Pool({
@@ -21,14 +22,19 @@ app.use(express.json()); // Middleware to parse incoming JSON requests
 // Define the port where the server will listen for requests
 const port = 5000;
 
+
+const accountSid = 'ACaa5ad3ce4b12ea140049454639ada32a';
+const authToken = '5a7d2e56c914845f30731a155184bba0';
+const client = twilio(accountSid, authToken);
+
 // POST route to add a new exam
 app.post('/exams', async (req, res) => {
   try {
-    const { examName, examDate } = req.body;
+    const { examName, examDate, phoneNumber } = req.body;
 
     // Validate input
-    if (!examName || !examDate) {
-      return res.status(400).json({ message: 'Both exam name and date are required.' });
+    if (!examName || !examDate || !phoneNumber) {
+      return res.status(400).json({ message: 'Exam name, date and phone number are required.' });
     }
 
     // Parse and validate examDate
@@ -37,22 +43,43 @@ app.post('/exams', async (req, res) => {
       return res.status(400).json({ message: 'Invalid exam date format.' });
     }
 
+ // Validate phone number 
+ if (phoneNumber && !/^\+?\d{10,15}$/.test(phoneNumber)) {
+  return res.status(400).json({ message: 'Invalid phone number format.' });
+}
     // Calculate days until the exam
     const currentDate = new Date();
     const daysUntilExam = Math.ceil((examDateObj - currentDate) / (1000 * 3600 * 24));
 
     // Insert into the database
     const query = `
-      INSERT INTO exams (id, exam_name, exam_date, days_until_exam)
-      VALUES ($1, $2, $3, $4)
+      INSERT INTO exams (id, exam_name, exam_date, phone_number, days_until_exam)
+      VALUES ($1, $2, $3, $4, $5)
       RETURNING *;
     `;
+    console.log(query)
+    console.log("Phone number being inserted: ", phoneNumber);
+    console.log("Days until exam: ", daysUntilExam);
     const result = await pool.query(query, [
       uuidv4(), // Generate a unique ID
       examName,
       examDate,
+      phoneNumber ? String(phoneNumber) : null,
       daysUntilExam,
     ]);
+
+    try{
+    //Send SMS confirmation via Twilio
+    const message = await client.messages.create({
+      body: `You have added a new exam: ${examName}. Exam Date: ${new Date(examDate).toLocaleDateString()}. Good Luck!`,
+      from: '+18667974208',
+      to: `+1${phoneNumber}`
+    });
+    console.log(`Message sent: ${message.sid}`);
+    }catch(error){
+      console.error('Error sending SMS:',error);
+      res.status(500).json({ message: 'Failed to send SMS' });
+    }
 
     // Return the inserted exam
     res.status(201).json(result.rows[0]);
