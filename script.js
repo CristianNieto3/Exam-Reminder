@@ -16,7 +16,7 @@ const messages = [
 let currentMessageIndex = 0;
 const textBubble = document.querySelector('.text-bubble');
 
-function updateMessage(){
+function updateMessage() {
     textBubble.textContent = messages[currentMessageIndex];
     currentMessageIndex = (currentMessageIndex + 1) % messages.length;
 }
@@ -34,21 +34,28 @@ async function fetchExams() {
         const examList = document.getElementById('examList');
         examList.innerHTML = '';
 
+        if (exams.length === 0) {
+            examList.innerHTML = '<p>No exams added yet. Add some exams!</p>';
+            return;
+        }
+
         // Populate the list with data from the backend
         exams.forEach((exam) => {
-            const listItem = document.createElement('li'); // Create a new list item
+            const daysClass = exam.days_until_exam <= 7 ? 'text-danger' : 'text-muted';
+            const listItem = document.createElement('li');
             listItem.innerHTML = `
-                      <div>
-                    <strong>${exam.examName}</strong><br>
-                    <small class="text-muted">Exam Date: ${exam.examDate}</small><br>
-                    <small class="text-muted">Days until exam: ${exam.daysUntilExam}</small>
+                <div>
+                    <strong>${exam.exam_name}</strong><br>
+                    <small class="text-muted">Exam Date: ${new Date(exam.exam_date).toLocaleDateString()}</small><br>
+                    <small class="${daysClass}">Days until exam: ${exam.days_until_exam}</small>
                 </div>
-                <button class="btn btn-danger btn-sm" onclick="deleteExam(${exam.id})">Delete</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteExam('${exam.id}')">Delete</button>
             `;
-            examList.appendChild(listItem); // Add the item to the list
+            examList.appendChild(listItem);
         });
     } catch (error) {
         console.error('Error fetching exams:', error); // Handle errors gracefully
+        alert('Error fetching exams. Please try again later.')
     }
 }
 
@@ -59,28 +66,46 @@ async function addExam(event) {
     // Get values from the form inputs
     const examName = document.getElementById('examName').value;
     const examDate = document.getElementById('examDate').value;
-    
+    const phoneNumber = document.getElementById('phone').value
 
-    console.log({examName, examDate,});
+    console.log({ examName, examDate , phoneNumber});
+
+    if(!examName || !examDate || !phoneNumber){
+        alert('Please provide all fields.')
+        return;
+    }
+
+    //validate phone number
+    const phonePattern = /^[0-9]{10}$/;
+    if (!phonePattern.test(phoneNumber)){
+        alert('Please enter a valid 10-digit phone number.')
+        return;
+    }
 
     try {
         // Send a POST request with the new exam data
         const response = await fetch(baseUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }, // Inform server that data is in JSON format
-            body: JSON.stringify({ examName, examDate, }), // Convert data to JSON
+            body: JSON.stringify({ examName, examDate, phoneNumber}), // Convert data to JSON
         });
+
+        const result = await response.json();
+        console.log('Response:', result);
 
         if (response.ok) {
             // Clear the form after successful submission
             document.getElementById('examForm').reset();
             // Refresh the list of exams
             fetchExams();
+            alert('Exam added successfully!');
         } else {
             console.error('Error adding exam:', response.statusText);
+            alert('Error adding exam: ${result.message}');
         }
     } catch (error) {
         console.error('Error adding exam:', error); // Log any errors
+        alert('Error adding exam. Please try again later.')
     }
 }
 
