@@ -10,7 +10,7 @@ const pool = new Pool({
   user: "postgres", // Adjust with your username
   host: 'localhost',
   database: 'exams_db',
-  password: '3120Blossom', // Use your database password
+  password: ':)', // Use your database password
   port: 5432,
 });
 
@@ -23,8 +23,8 @@ app.use(express.json()); // Middleware to parse incoming JSON requests
 const port = 5000;
 
 
-const accountSid = 'ACaa5ad3ce4b12ea140049454639ada32a';
-const authToken = '5a7d2e56c914845f30731a155184bba0';
+const accountSid = 'sike!!';
+const authToken = 'sike pt2!!!';
 const client = twilio(accountSid, authToken);
 
 // POST route to add a new exam
